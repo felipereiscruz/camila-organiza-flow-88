@@ -1,27 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central de Organização da Camila</title>
-    <meta name="description" content="Central de organização pessoal para Camila - Faculdade, Trabalho, Academia e GJ" />
-    <meta name="author" content="Camila" />
+    <meta name="description" content="Central de organização pessoal para Camila - Faculdade, Trabalho, Academia e GJ">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-4">
+        <!-- Navigation -->
+        <nav class="mb-8">
+            <div class="container mx-auto">
+                <div class="flex justify-center space-x-4">
+                    <button onclick="showPage('home')" class="nav-btn active" id="home-nav">Home</button>
+                    <button onclick="showPage('organizar')" class="nav-btn" id="organizar-nav">Organizar</button>
+                </div>
+            </div>
+        </nav>
 
-    <meta property="og:title" content="camila-organiza-flow" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        <!-- Home Page -->
+        <div id="home-page" class="page">
+            <div class="container mx-auto text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Central de Organização</h1>
+                <p class="text-xl text-gray-600 mb-8">Organize sua vida acadêmica, profissional e pessoal</p>
+                <button onclick="showPage('organizar')" class="btn btn-primary">Começar a Organizar</button>
+            </div>
+        </div>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+        <!-- Organizar Page -->
+        <div id="organizar-page" class="page hidden">
+            <div class="container mx-auto">
+                <h1 class="text-3xl font-bold text-center mb-8">Minha Organização</h1>
+                
+                <!-- Faculdade Section -->
+                <div class="card mb-6">
+                    <div class="card-header" onclick="toggleSection('faculdade')">
+                        <h2 class="text-xl font-semibold">📚 Faculdade</h2>
+                        <span class="toggle-icon" id="faculdade-icon">▼</span>
+                    </div>
+                    <div class="card-content" id="faculdade-content">
+                        <div class="task-list" id="faculdade-tasks"></div>
+                        <button onclick="addTask('faculdade')" class="btn btn-sm">+ Adicionar Tarefa</button>
+                        <button onclick="clearSection('faculdade')" class="btn btn-sm btn-danger ml-2">Limpar Seção</button>
+                    </div>
+                </div>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+                <!-- Trabalho Section -->
+                <div class="card mb-6">
+                    <div class="card-header" onclick="toggleSection('trabalho')">
+                        <h2 class="text-xl font-semibold">💼 Trabalho</h2>
+                        <span class="toggle-icon" id="trabalho-icon">▼</span>
+                    </div>
+                    <div class="card-content" id="trabalho-content">
+                        <div class="task-list" id="trabalho-tasks"></div>
+                        <button onclick="addTask('trabalho')" class="btn btn-sm">+ Adicionar Tarefa</button>
+                        <button onclick="clearSection('trabalho')" class="btn btn-sm btn-danger ml-2">Limpar Seção</button>
+                    </div>
+                </div>
+
+                <!-- Academia Section -->
+                <div class="card mb-6">
+                    <div class="card-header" onclick="toggleSection('academia')">
+                        <h2 class="text-xl font-semibold">💪 Academia</h2>
+                        <span class="toggle-icon" id="academia-icon">▼</span>
+                    </div>
+                    <div class="card-content" id="academia-content">
+                        <!-- Workout Plans -->
+                        <div class="workout-plans mb-4" id="workout-plans"></div>
+                        
+                        <!-- Add Workout Form -->
+                        <div class="workout-form mb-4" id="workout-form" style="display: none;">
+                            <h3 class="text-lg font-medium mb-3">Criar Plano de Treino</h3>
+                            <input type="text" id="workout-name" placeholder="Nome do plano" class="input mb-3">
+                            <div class="workout-days">
+                                <div class="day-item">
+                                    <label>Segunda:</label>
+                                    <input type="text" id="segunda" placeholder="Ex: Peito e Tríceps" class="input">
+                                </div>
+                                <div class="day-item">
+                                    <label>Terça:</label>
+                                    <input type="text" id="terca" placeholder="Ex: Costas e Bíceps" class="input">
+                                </div>
+                                <div class="day-item">
+                                    <label>Quarta:</label>
+                                    <input type="text" id="quarta" placeholder="Ex: Pernas" class="input">
+                                </div>
+                                <div class="day-item">
+                                    <label>Quinta:</label>
+                                    <input type="text" id="quinta" placeholder="Ex: Ombro" class="input">
+                                </div>
+                                <div class="day-item">
+                                    <label>Sexta:</label>
+                                    <input type="text" id="sexta" placeholder="Ex: Cardio" class="input">
+                                </div>
+                                <div class="day-item">
+                                    <label>Sábado:</label>
+                                    <input type="text" id="sabado" placeholder="Ex: Descanso" class="input">
+                                </div>
+                                <div class="day-item">
+                                    <label>Domingo:</label>
+                                    <input type="text" id="domingo" placeholder="Ex: Descanso" class="input">
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <button onclick="saveWorkoutPlan()" class="btn btn-primary">Salvar Plano</button>
+                                <button onclick="hideWorkoutForm()" class="btn btn-sm ml-2">Cancelar</button>
+                            </div>
+                        </div>
+
+                        <button onclick="showWorkoutForm()" class="btn btn-sm">+ Criar Plano de Treino</button>
+                        <button onclick="clearSection('academia')" class="btn btn-sm btn-danger ml-2">Limpar Seção</button>
+                    </div>
+                </div>
+
+                <!-- GJ Section -->
+                <div class="card mb-6">
+                    <div class="card-header" onclick="toggleSection('gj')">
+                        <h2 class="text-xl font-semibold">🎯 GJ</h2>
+                        <span class="toggle-icon" id="gj-icon">▼</span>
+                    </div>
+                    <div class="card-content" id="gj-content">
+                        <div class="task-list" id="gj-tasks"></div>
+                        <button onclick="addTask('gj')" class="btn btn-sm">+ Adicionar Tarefa</button>
+                        <button onclick="clearSection('gj')" class="btn btn-sm btn-danger ml-2">Limpar Seção</button>
+                    </div>
+                </div>
+
+                <!-- Outros Eventos Section -->
+                <div class="card mb-6">
+                    <div class="card-header" onclick="toggleSection('outros')">
+                        <h2 class="text-xl font-semibold">📅 Outros Eventos</h2>
+                        <span class="toggle-icon" id="outros-icon">▼</span>
+                    </div>
+                    <div class="card-content" id="outros-content">
+                        <div class="task-list" id="outros-tasks"></div>
+                        <button onclick="addTask('outros')" class="btn btn-sm">+ Adicionar Tarefa</button>
+                        <button onclick="clearSection('outros')" class="btn btn-sm btn-danger ml-2">Limpar Seção</button>
+                    </div>
+                </div>
+
+                <footer class="text-center text-sm text-gray-600 mt-8">
+                    💾 Dados salvos automaticamente no navegador
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
