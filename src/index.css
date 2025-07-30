@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark blue gradient background */
+    --background: 220 30% 8%;
+    --foreground: 210 25% 92%;
+
+    /* Card styling with deep blues */
+    --card: 220 25% 12%;
+    --card-foreground: 210 25% 92%;
+
+    --popover: 220 25% 12%;
+    --popover-foreground: 210 25% 92%;
+
+    /* Primary brand colors - bright blue theme */
+    --primary: 210 95% 65%;
+    --primary-foreground: 220 30% 8%;
+    --primary-glow: 210 85% 75%;
+
+    /* Secondary electric blue */
+    --secondary: 200 80% 25%;
+    --secondary-foreground: 210 25% 92%;
+
+    /* Muted dark blues */
+    --muted: 220 20% 15%;
+    --muted-foreground: 210 15% 65%;
+
+    /* Accent cyan for highlights */
+    --accent: 180 75% 45%;
+    --accent-foreground: 220 30% 8%;
+
+    /* Destructive red for clear buttons */
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 210 25% 92%;
+
+    /* Borders and inputs */
+    --border: 220 25% 18%;
+    --input: 220 25% 15%;
+    --ring: 210 95% 65%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 220 30% 10%;
+    --sidebar-foreground: 210 25% 92%;
+    --sidebar-primary: 210 95% 65%;
+    --sidebar-primary-foreground: 220 30% 8%;
+    --sidebar-accent: 220 25% 15%;
+    --sidebar-accent-foreground: 210 25% 92%;
+    --sidebar-border: 220 25% 18%;
+    --sidebar-ring: 210 95% 65%;
+  }
+
+  .dark {
+    /* Even darker theme for enhanced contrast */
+    --background: 215 35% 5%;
+    --foreground: 210 30% 95%;
+
+    --card: 215 30% 8%;
+    --card-foreground: 210 30% 95%;
+
+    --popover: 215 30% 8%;
+    --popover-foreground: 210 30% 95%;
+
+    --primary: 210 100% 70%;
+    --primary-foreground: 215 35% 5%;
+    --primary-glow: 210 90% 80%;
+
+    --secondary: 200 85% 20%;
+    --secondary-foreground: 210 30% 95%;
+
+    --muted: 215 25% 12%;
+    --muted-foreground: 210 20% 70%;
+
+    --accent: 180 80% 50%;
+    --accent-foreground: 215 35% 5%;
+
+    --destructive: 0 80% 65%;
+    --destructive-foreground: 210 30% 95%;
+
+    --border: 215 25% 15%;
+    --input: 215 25% 12%;
+    --ring: 210 100% 70%;
+    
+    --sidebar-background: 215 35% 7%;
+    --sidebar-foreground: 210 30% 95%;
+    --sidebar-primary: 210 100% 70%;
+    --sidebar-primary-foreground: 215 35% 5%;
+    --sidebar-accent: 215 25% 12%;
+    --sidebar-accent-foreground: 210 30% 95%;
+    --sidebar-border: 215 25% 15%;
+    --sidebar-ring: 210 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(220 35% 10%));
+    min-height: 100vh;
+  }
+
+  /* Custom styles for mobile optimization */
+  input, textarea {
+    @apply text-base; /* Prevents zoom on iOS */
+  }
+
+  /* Smooth transitions */
+  * {
+    transition: all 0.2s ease-in-out;
+  }
+}
